@@ -5,3 +5,8 @@ html, body, #app, #app>div, #root {
 .App {
   text-align: center;
 }
+
+.react-dat-gui {
+  position: absolute;
+  z-index: 1;
+}
