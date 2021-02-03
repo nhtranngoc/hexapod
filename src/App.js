@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState, Fragment } from 'react'
 import { Canvas } from 'react-three-fiber'
 import DatGui, { DatButton } from 'react-dat-gui'
-import Tibia from './Components/Tibia';
+import Leg from './Components/Leg';
 import Camera from './Components/Camera';
 import CameraControls from './Components/CameraControls';
 
@@ -19,7 +19,7 @@ function App() {
         <CameraControls />
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
-        <Tibia position={[0, 0, 0]} active={enlarge}/>
+        <Leg position={[0, 0, 0]} active={enlarge}/>
       </Canvas>
     </Fragment>
   );

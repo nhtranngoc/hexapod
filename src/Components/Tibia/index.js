@@ -1,27 +1,31 @@
-import React, { useRef, useState, Fragment } from 'react'
-import { Canvas, useThree } from 'react-three-fiber'
-import { CylinderBufferGeometry } from 'three'
+import React, { useRef } from 'react'
+import PropTypes from 'prop-types'
 
-export const Tibia = (props) => {
+const propTypes = {
+    rotation: PropTypes.arrayOf(PropTypes.number),
+}
+
+const defaultProps = {
+    rotation: [0,0,0]
+}
+
+export const Tibia = ({rotation}, props) => {
     // This reference will give us direct access to the mesh
     const mesh = useRef()
-  
-    // Set up state for the hovered and active state
-    const [hovered, setHover] = useState(false)
-    const [active, setActive] = useState(false)
   
     return (  
       <mesh
         {...props}
         ref={mesh}
-        scale={props.active ? [1.5, 1.5, 1.5] : [1, 1, 1]}
-        onClick={(event) => setActive(!active)}
-        onPointerOver={(event) => setHover(true)}
-        onPointerOut={(event) => setHover(false)}>
+        rotation={rotation}>
         <cylinderGeometry args={[1,3,20]} />
-        <meshPhongMaterial flatShading color={hovered ? 'hotpink' : 'orange'} />
+        <meshPhongMaterial flatShading color={'#87CEFA'} />
       </mesh>
     )
   }
+
+Tibia.propTypes = propTypes;
+
+Tibia.defaultProps = defaultProps;
 
 export default Tibia;
