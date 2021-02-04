@@ -1,24 +1,22 @@
-import React, { useRef } from 'react'
+import React, { useRef, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
 
 const propTypes = {
-    rotation: PropTypes.arrayOf(PropTypes.number),
+  length: PropTypes.number,
+  position: PropTypes.arrayOf(PropTypes.number),
+  rotation: PropTypes.arrayOf(PropTypes.number),
 }
 
 const defaultProps = {
-    rotation: [0,0,0]
+  length: 20,
+  position: [0,0,0],
+  rotation: [0,0,0]
 }
 
-export const Tibia = ({rotation}, props) => {
-    // This reference will give us direct access to the mesh
-    const mesh = useRef()
-  
+export const Tibia = ({length, position, rotation}, props) => {
     return (  
-      <mesh
-        {...props}
-        ref={mesh}
-        rotation={rotation}>
-        <cylinderGeometry args={[1,3,20]} />
+      <mesh {...props} position={position} >
+        <cylinderGeometry args={[.5,2,length]} rotation={rotation}/>
         <meshPhongMaterial flatShading color={'#87CEFA'} />
       </mesh>
     )
