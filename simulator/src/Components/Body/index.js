@@ -7,23 +7,23 @@ const propTypes = {
 }
 
 const defaultProps = {
-  length: 3,
+  length: 15,
   position: [0, 0, 0]
 }
 
-export const Coxa = ({ length, position }, props) => {
+export const Body = ({ position, length }, props) => {
   return (
       <mesh
         {...props}
         position={position}>
-        <sphereBufferGeometry args={[length, 8, 8]}/>
-        <meshPhongMaterial flatShading color={'#F08080'} />
+        <boxGeometry args={[30, 3, 20]} />
+        <meshPhongMaterial flatShading color={'#778899'} />
       </mesh>
   )
 }
 
-Coxa.propTypes = propTypes
+Body.propTypes = propTypes
 
-Coxa.defaultProps = defaultProps
+Body.defaultProps = defaultProps
 
-export default Coxa
+export default Body

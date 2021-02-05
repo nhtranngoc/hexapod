@@ -27,7 +27,7 @@ export const Leg = ({ position, rotationCoxa, rotationFemur, rotationTibia }, pr
   return (
         <object3D position={position} rotation={[0, rotationCoxa, 0]}>
             <Coxa length={coxaLength} />
-            <object3D position={[0, coxaLength, 0]} rotation={[rotationFemur, 0, 0]} >
+            <object3D position={[0, 0, -coxaLength / 2]} rotation={[rotationFemur, 0, 0]} >
                 <Femur length={femurLength} position={[0, femurLength / 2, 0]} />
                 <object3D position={[0, femurLength, 0]} rotation={[rotationTibia, 0, 0]}>
                     <Tibia length={tibiaLength} position={[0, tibiaLength / 2, 0]}/>

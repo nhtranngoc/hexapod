@@ -3,6 +3,7 @@ import React, { Fragment, useState } from 'react'
 import { Canvas } from 'react-three-fiber'
 import DatGui, { DatNumber } from 'react-dat-gui'
 import Leg from './Components/Leg'
+import Body from './Components/Body'
 import Camera from './Components/Camera'
 import CameraControls from './Components/CameraControls'
 import 'react-dat-gui/dist/index.css'
@@ -71,6 +72,7 @@ function App () {
           rotationFemur={state.femurX * Math.PI / 180}
           rotationTibia={state.tibiaY * Math.PI / 180}
         />
+        <Body position={[0, heightOffset, 0]}/>
       </Canvas>
     </Fragment>
   )
