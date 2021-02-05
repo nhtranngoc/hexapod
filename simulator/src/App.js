@@ -18,6 +18,9 @@ function App () {
     setState({ ...newData })
   }
 
+  const heightOffset = 5
+  const bodyLength = 20
+
   return (
 <Fragment>
       <DatGui data={state} onUpdate={handleUpdate}>
@@ -33,8 +36,38 @@ function App () {
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         <Leg
-          position={[0, 0, 0]}
+          position={[-10, heightOffset, -bodyLength / 2]}
           rotationCoxa={state.coxaY * Math.PI / 180}
+          rotationFemur={state.femurX * Math.PI / 180}
+          rotationTibia={state.tibiaY * Math.PI / 180}
+        />
+        <Leg
+          position={[0, heightOffset, -bodyLength / 2]}
+          rotationCoxa={state.coxaY * Math.PI / 180}
+          rotationFemur={state.femurX * Math.PI / 180}
+          rotationTibia={state.tibiaY * Math.PI / 180}
+        />
+        <Leg
+          position={[10, heightOffset, -bodyLength / 2]}
+          rotationCoxa={state.coxaY * Math.PI / 180}
+          rotationFemur={state.femurX * Math.PI / 180}
+          rotationTibia={state.tibiaY * Math.PI / 180}
+        />
+        <Leg
+          position={[-10, heightOffset, bodyLength / 2]}
+          rotationCoxa={state.coxaY * Math.PI / 180 + Math.PI}
+          rotationFemur={state.femurX * Math.PI / 180}
+          rotationTibia={state.tibiaY * Math.PI / 180}
+        />
+        <Leg
+          position={[0, heightOffset, bodyLength / 2]}
+          rotationCoxa={state.coxaY * Math.PI / 180 + Math.PI}
+          rotationFemur={state.femurX * Math.PI / 180}
+          rotationTibia={state.tibiaY * Math.PI / 180}
+        />
+        <Leg
+          position={[10, heightOffset, bodyLength / 2]}
+          rotationCoxa={state.coxaY * Math.PI / 180 + Math.PI}
           rotationFemur={state.femurX * Math.PI / 180}
           rotationTibia={state.tibiaY * Math.PI / 180}
         />
