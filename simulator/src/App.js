@@ -1,12 +1,13 @@
-import './App.css'
 import React, { Fragment, useState } from 'react'
 import { Canvas } from 'react-three-fiber'
 import DatGui, { DatNumber } from 'react-dat-gui'
-import Leg from './Components/Leg'
-import Body from './Components/Body'
-import Camera from './Components/Camera'
-import CameraControls from './Components/CameraControls'
 import 'react-dat-gui/dist/index.css'
+
+import Robot from './components/Robot'
+import Camera from './components/Camera'
+import CameraControls from './components/CameraControls'
+
+import './App.css'
 
 function App () {
   const [state, setState] = useState({
@@ -22,6 +23,22 @@ function App () {
   const heightOffset = 5
   const bodyLength = 20
 
+  // For now all legs are connected to one control
+  const toRotations = () => {
+    return {
+      left: {
+        front: [state.coxaY, state.femurX, state.tibiaY],
+        mid: [state.coxaY, state.femurX, state.tibiaY],
+        back: [state.coxaY, state.femurX, state.tibiaY]
+      },
+      right: {
+        front: [state.coxaY, state.femurX, state.tibiaY],
+        mid: [state.coxaY, state.femurX, state.tibiaY],
+        back: [state.coxaY, state.femurX, state.tibiaY]
+      }
+    }
+  }
+
   return (
 <Fragment>
       <DatGui data={state} onUpdate={handleUpdate}>
@@ -36,43 +53,7 @@ function App () {
         <CameraControls />
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
-        <Leg
-          position={[-10, heightOffset, -bodyLength / 2]}
-          rotationCoxa={state.coxaY * Math.PI / 180}
-          rotationFemur={state.femurX * Math.PI / 180}
-          rotationTibia={state.tibiaY * Math.PI / 180}
-        />
-        <Leg
-          position={[0, heightOffset, -bodyLength / 2]}
-          rotationCoxa={state.coxaY * Math.PI / 180}
-          rotationFemur={state.femurX * Math.PI / 180}
-          rotationTibia={state.tibiaY * Math.PI / 180}
-        />
-        <Leg
-          position={[10, heightOffset, -bodyLength / 2]}
-          rotationCoxa={state.coxaY * Math.PI / 180}
-          rotationFemur={state.femurX * Math.PI / 180}
-          rotationTibia={state.tibiaY * Math.PI / 180}
-        />
-        <Leg
-          position={[-10, heightOffset, bodyLength / 2]}
-          rotationCoxa={state.coxaY * Math.PI / 180 + Math.PI}
-          rotationFemur={state.femurX * Math.PI / 180}
-          rotationTibia={state.tibiaY * Math.PI / 180}
-        />
-        <Leg
-          position={[0, heightOffset, bodyLength / 2]}
-          rotationCoxa={state.coxaY * Math.PI / 180 + Math.PI}
-          rotationFemur={state.femurX * Math.PI / 180}
-          rotationTibia={state.tibiaY * Math.PI / 180}
-        />
-        <Leg
-          position={[10, heightOffset, bodyLength / 2]}
-          rotationCoxa={state.coxaY * Math.PI / 180 + Math.PI}
-          rotationFemur={state.femurX * Math.PI / 180}
-          rotationTibia={state.tibiaY * Math.PI / 180}
-        />
-        <Body position={[0, heightOffset, 0]}/>
+        <Robot position={[0, heightOffset, 0]} length={bodyLength} rotations={toRotations()}/>
       </Canvas>
     </Fragment>
   )
